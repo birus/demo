@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Login {%endblock%}
+{%block content %}
+	<form action="." method="Post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		{{ mensaje }}
+		<br>
+		<button class="btn btn-primary">Acceder</button>
+		
+	</form>
+{% endblock %}

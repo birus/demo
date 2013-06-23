@@ -1,0 +1,114 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>{% block title %} VENTAS.COM {% endblock %}</title>
+	
+	<!--IMPORTACIÓN DE CSS -->
+	<link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="/media/bootstrap/css/bootstrap-responsive.css">
+	<script src="/media/js/jquery.js" ></script>
+	<script src="/media/bootstrap/jquery.js" ></script>
+	<style type="text/css">
+		body{
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		.sidebar-nav{
+			padding: 9px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<a class="brand" href="{% url vista_principal %}">Proyecto Ventas</a>
+			<!-- 
+			{% if user.is_authenticated %}
+				<p class="navbar-text pull-rigth" align="right">
+				Usuario{{user.username}}
+				</p>
+			{% endif %}
+			-->
+			<ul class="nav">
+				<li><a href="/productos/page/1">Productos</a></li>
+				<li><a href="{% url vista_contacto %}">Contacto</a></li>
+				<li><a href="{% url vista_about %}">Descripción</a></li>
+				{% if user.is_authenticated %}
+					<li><a href="{% url vista_logout %}">Cerrar Sesion</a></li>
+					
+					<li><p class="navbar-text pull-rigth" align="right">
+						Usuario: {{user.username}}
+					</p></li>
+				{% else %}
+					<li><a href="{% url vista_login %}">Login</a></li>
+				{% endif %}
+			</ul>
+		</div> <!--Fin Inner!-->
+		
+	</div> <!--Fin NavBar!-->
+	
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span9">
+				<div class="hero-unit">
+				{% block content %}
+				{% endblock %}	
+				</div>
+			
+		</div>
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">Mi Carrito</li>
+					<br>
+					<p align="justify">
+					Carrito Supper	
+					</p>
+				</ul>
+			</div><!--Well-->
+			
+		</div><!--Span3-->
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">Nuevos Productos</li>
+					<p align="justify">
+					{% for pr in productos %}
+					<li>{{pr.nombre}}</li>
+					{% endfor %}
+					</p>
+				</ul>
+			</div><!--Well-->
+			
+		</div><!--Span3-->
+	</div><!--Container Fluid-->
+	
+	
+</body>
+</html>
+
+
+<!--
+<header>
+		<img src="/media/images/logo.jpg">
+		<h1>Proyecto Demo (Venta de Productos)</h1>
+		<nav>
+			<a href="{% url vista_principal %}">Inicio</a>
+			<a href="/productos/page/1">Productos</a>
+			<a href="{% url vista_contacto %}">Contacto</a>
+			<a href="{% url vista_about %}">Acerca De..</a>
+			{% if user.is_authenticated %}
+				<a href="{% url vista_logout %}">Cerrar Sesion</a>
+			{% else %}
+				<a href="{% url vista_login %}">Iniciar Sesion</a>
+			{% endif %}
+		</nav>
+	</header>
+	<section>
+		
+	</section>
+
+Fin!-->
+
+
